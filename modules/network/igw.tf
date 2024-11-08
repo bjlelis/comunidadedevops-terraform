@@ -9,7 +9,7 @@ resource "aws_internet_gateway" "eks_igw" {
   )
 }
 
-resource "aws_route_table" "eks-public_route_table" {
+resource "aws_route_table" "eks_public_route_table" {
   vpc_id = aws_vpc.eks_vpc.id
 
   route {
@@ -20,17 +20,7 @@ resource "aws_route_table" "eks-public_route_table" {
   tags = merge(
     var.tags,
     {
-      Name = "${var.project_name}-public-route-table"
+      Name = "${var.project_name}-pub-route-table"
     }
   )
-}
-
-resource "aws_route_table_association" "eks_rtb_assoc_1a" {
-  subnet_id      = aws_subnet.eks_subnet_public_1a.id
-  route_table_id = aws_route_table.eks-public_route_table.id
-}
-
-resource "aws_route_table_association" "eks_rtb_assoc_1b" {
-  subnet_id      = aws_subnet.eks_subnet_public_1b.id
-  route_table_id = aws_route_table.eks-public_route_table.id
 }

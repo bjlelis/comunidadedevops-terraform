@@ -11,9 +11,13 @@ variable "project_name" {
 variable "region" {
   type        = string
   description = "AWS region to create the resources"
+  default     = "us-east-1"
 }
 
 variable "tags" {
   type        = map(any)
   description = "A map of tags to add to all AWS resources"
+  default = {
+
+  }
 }
